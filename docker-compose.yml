@@ -1,0 +1,48 @@
+services:
+    nginx:
+        image: nginx:stable-alpine
+        container_name: nginx
+        networks:
+            - crispy 
+        ports:
+          - "80:80"
+        volumes:
+          - ./src:/var/www/html
+          - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+        depends_on:
+          - php
+
+    php:
+        build:
+          context: .
+          dockerfile: php-dockerfile
+        container_name: php
+        volumes:
+          - ./src:/var/www/html
+        ports:
+          - "9000:9000"
+        networks:
+          - crispy 
+
+    composer:
+      image: composer:latest
+      container_name: composer
+      volumes:
+        - ./src:/var/www/html
+      working_dir: /var/www/html
+      networks:
+        - crispy 
+
+    npm:
+      image: node:latest
+      container_name: npm
+      volumes:
+        - ./src:/var/www/html
+      working_dir: /var/www/html
+      entrypoint: ['npm']
+      networks:
+        - crispy
+
+networks:
+    crispy:
+        driver: bridge
