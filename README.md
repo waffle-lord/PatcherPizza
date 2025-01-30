@@ -9,7 +9,11 @@ To create an account run user factory create in tinker:
 # enter the tinker environment
 docker compose run --rm php php /var/www/html/artisan tinker
 # add the user (update info as needed)
-App\Models\User::factory()->create(['name' => 'username', 'email' => 'username@example.com', 'password' => Illuminate\Support\Facades\Hash::make('password')])
+App\Models\User::factory()->create([
+    'name' => 'username',
+    'email' => 'username@example.com',
+    'password' => Illuminate\Support\Facades\Hash::make('password')
+])
 # leave tinker
 exit
 ```
