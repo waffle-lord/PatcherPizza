@@ -1,23 +1,27 @@
 #!/bin/bash
 
+docker compose down
+
 if [[ $1 == '--dev' ]]; then
   read -p "Running dev setup will wipe / seed the database. Continue (y/[n])? " confirmDev
 
   if [[ $confirmDev != 'y' ]]; then
     exit
   fi
+  docker compose down -v
 fi
 
-if [[ $1 == --prod ]]; then
+if [[ $1 == '--prod' ]]; then
   if [ -f .prod-init ]; then
     echo 'You have already initialized production. You will need to delete .prod-init to continue. This is not advised'
     echo '!!THIS WILL WIPE YOUR DB!!'
     echo 'Issue command directly if you do not want that to happen!'
     exit
   fi
+  docker compose down -v
+  echo ' -> prod-init'
+  touch .prod-init
 fi
-
-touch .prod-init
 
 if [ ! -f ./src/database/database.sqlite ]; then
     touch ./src/database/database.sqlite
@@ -78,3 +82,9 @@ if [[ $1 == '--prod' ]]; then
 fi
 
 echo ' -> setup done :)'
+echo ''
+echo 'Server      : http://localhost'
+
+if [[ $1 == '--dev' ]]; then
+  echo 'dev account : test@example.com | password'
+fi

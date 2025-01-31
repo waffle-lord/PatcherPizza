@@ -3,7 +3,7 @@ services:
         image: nginx:stable-alpine
         container_name: nginx
         networks:
-            - crispy 
+            - pizza 
         ports:
           - "80:80"
         volumes:
@@ -22,7 +22,7 @@ services:
         ports:
           - "9000:9000"
         networks:
-          - crispy 
+          - pizza
 
     composer:
       image: composer:latest
@@ -31,7 +31,7 @@ services:
         - ./src:/var/www/html
       working_dir: /var/www/html
       networks:
-        - crispy 
+        - pizza 
 
     npm:
       image: node:latest
@@ -41,8 +41,8 @@ services:
       working_dir: /var/www/html
       entrypoint: ['npm']
       networks:
-        - crispy
+        - pizza 
 
 networks:
-    crispy:
+    pizza:
         driver: bridge
