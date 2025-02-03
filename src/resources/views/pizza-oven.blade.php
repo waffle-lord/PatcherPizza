@@ -8,7 +8,7 @@
         <div class="flex-row relative px-6 py-2 dark:bg-gray-900 dark:text-gray-100">
             <h2 class="flex-1 text-center">Patcher Pizza</h2>
             @if (Route::has('login'))
-                <nav class="absolute top-0 right-0">
+                <nav class="absolute top-2 right-5">
                     @guest
                         <a
                             href="{{ route('login') }}"

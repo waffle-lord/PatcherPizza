@@ -16,6 +16,7 @@ services:
         build:
           context: .
           dockerfile: php-dockerfile
+        user: "${USER_ID}:${GROUP_ID}"
         container_name: php
         volumes:
           - ./src:/var/www/html
@@ -36,6 +37,7 @@ services:
 
     npm:
       image: node:latest
+      user: "${USER_ID}:${GROUP_ID}"
       container_name: npm
       volumes:
         - ./src:/var/www/html

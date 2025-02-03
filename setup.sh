@@ -45,11 +45,11 @@ docker compose build --no-cache
 echo ' -> starting containers'
 docker compose up -d
 
-# always run artisan in composer container, to ensure composer is available to it when needed
-docker compose run --rm composer php artisan key:generate
-
 echo ' -> running composer install'
 docker compose run --rm composer install
+
+echo ' -> generating key'
+docker compose run --rm composer php artisan key:generate
 
 echo ' -> running npm install'
 docker compose run --rm npm i
@@ -68,14 +68,15 @@ else
   docker compose exec php php /var/www/html/artisan migrate
 fi
 
-if [ -f ./src/public/storage ]; then
+if [ ! -h ./src/public/storage ]; then
+  echo ' -> making storage link'
   docker compose run --rm composer php artisan storage:link
 else
   echo ' -> storage link already exists'
 fi
 
-echo ' -> updating file ownership'
-docker compose run --rm php chown -h www-data:www-data /var/www/html/public/storage
+#echo ' -> updating file ownership'
+#docker compose run --rm php chown -h www-data:www-data /var/www/html/public/storage
 
 if [[ $1 == '--prod' ]]; then
   echo ':: Account creation ::'
