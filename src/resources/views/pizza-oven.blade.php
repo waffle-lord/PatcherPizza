@@ -1,7 +1,11 @@
 
 @auth
     <x-app-layout>
-        <h1>Hello There</h1>
+        <div class="flex h-screen justify-center items-center">
+            <div class="flex">
+                <x-pizza-progress />
+            </div>
+        </div>
     </x-app-layout>
 @else
     <x-guest-layout>
