@@ -1,5 +1,12 @@
 #!/bin/bash
 
+
+if [[ $1 == '--watch' ]]; then
+    docker compose run --rm npm run watch
+    exit
+fi
+
+
 docker compose down
 
 if [[ $1 == '--dev' ]]; then
