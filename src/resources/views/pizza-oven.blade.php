@@ -5,10 +5,10 @@
     </x-app-layout>
 @else
     <x-guest-layout>
-        <div class="px-6 py-2 dark:bg-gray-900 dark:text-gray-100">
-            <h2 class="-mx-3 flex justify-center">Patcher Pizza</h2>
+        <div class="flex-row relative px-6 py-2 dark:bg-gray-900 dark:text-gray-100">
+            <h2 class="flex-1 text-center">Patcher Pizza</h2>
             @if (Route::has('login'))
-                <nav class="-mx-3 flex flex-1 justify-end">
+                <nav class="absolute top-0 right-0">
                     @guest
                         <a
                             href="{{ route('login') }}"
