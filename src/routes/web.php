@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pizza-oven');
-});
+})->name('pizza-oven');
 
 Route::middleware([
     'auth:sanctum',
