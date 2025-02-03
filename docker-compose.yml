@@ -26,6 +26,7 @@ services:
 
     composer:
       image: composer:latest
+      user: "${USER_ID}:${GROUP_ID}"
       container_name: composer
       volumes:
         - ./src:/var/www/html
