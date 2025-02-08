@@ -14,4 +14,9 @@ class PizzaOrder extends Model
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }
+
+    public static function currentOrder(): PizzaOrder | null
+    {
+        return PizzaOrder::orderBy('updated_at', 'desc')->where('open', true)->first();
+    }
 }

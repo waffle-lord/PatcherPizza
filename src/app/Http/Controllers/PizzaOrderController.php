@@ -14,7 +14,7 @@ class PizzaOrderController extends Controller
      */
     public function index(): View
     {
-        $order = PizzaOrder::orderby('updated_at', 'desc')->first();
+        $order = PizzaOrder::currentOrder();
         return view('pizza-oven', ['order' => $order]);
     }
 

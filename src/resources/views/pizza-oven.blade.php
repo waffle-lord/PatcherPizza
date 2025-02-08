@@ -1,9 +1,12 @@
-
 @auth
     <x-app-layout>
         <div class="flex h-screen justify-center items-center">
-            <div class="flex">
-                <x-pizza-progress :order="$order" />
+            <div class="flex text-black">
+                @if($order === null)
+                    <p>The kitchen is closed :)</p>
+                @else
+                    <x-pizza-progress :order="$order"/>
+                @endif
             </div>
         </div>
     </x-app-layout>
@@ -25,8 +28,12 @@
             @endif
         </div>
         <div class="flex h-screen justify-center items-center">
-            <div class="flex">
-                <x-pizza-progress :order="$order" />
+            <div class="flex text-black">
+                @if($order === null)
+                    <p>The kitchen is closed :)</p>
+                @else
+                    <x-pizza-progress :order="$order"/>
+                @endif
             </div>
         </div>
     </x-guest-layout>
