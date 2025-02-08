@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePizzaOrderRequest;
 use App\Http\Requests\UpdatePizzaOrderRequest;
 use App\Models\PizzaOrder;
+use Illuminate\View\View;
 
 class PizzaOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        //
+        $order = PizzaOrder::orderby('updated_at', 'desc')->first();
+        return view('pizza-oven', ['order' => $order]);
     }
 
     /**

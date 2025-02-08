@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\PizzaOrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('pizza-oven');
-})->name('pizza-oven');
+    return redirect('/pizza-oven');
+});
 
 Route::middleware([
     'auth:sanctum',
@@ -15,3 +16,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::resource('pizza-oven', PizzaOrderController::class)
+    ->only(['index']);

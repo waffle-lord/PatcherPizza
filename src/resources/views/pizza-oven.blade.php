@@ -3,7 +3,7 @@
     <x-app-layout>
         <div class="flex h-screen justify-center items-center">
             <div class="flex">
-                <x-pizza-progress />
+                <x-pizza-progress :order="$order" />
             </div>
         </div>
     </x-app-layout>
@@ -26,7 +26,7 @@
         </div>
         <div class="flex h-screen justify-center items-center">
             <div class="flex">
-                <x-pizza-progress />
+                <x-pizza-progress :order="$order" />
             </div>
         </div>
     </x-guest-layout>
