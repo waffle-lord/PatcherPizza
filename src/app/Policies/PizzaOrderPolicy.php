@@ -13,7 +13,7 @@ class PizzaOrderPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return $user->tokenCan('read');
     }
 
     /**
@@ -21,7 +21,7 @@ class PizzaOrderPolicy
      */
     public function view(User $user, PizzaOrder $pizzaOrder): bool
     {
-        return false;
+        return $this->viewAny($user);
     }
 
     /**
@@ -29,7 +29,7 @@ class PizzaOrderPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user->tokenCan('create');
     }
 
     /**
@@ -37,7 +37,7 @@ class PizzaOrderPolicy
      */
     public function update(User $user, PizzaOrder $pizzaOrder): bool
     {
-        return false;
+        return $pizzaOrder->user()->is($user) && $user->tokenCan('update');
     }
 
     /**
@@ -45,7 +45,7 @@ class PizzaOrderPolicy
      */
     public function delete(User $user, PizzaOrder $pizzaOrder): bool
     {
-        return false;
+        return $this->update($user, $pizzaOrder);
     }
 
     /**

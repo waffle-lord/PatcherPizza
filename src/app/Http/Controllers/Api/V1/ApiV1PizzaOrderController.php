@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePizzaOrderRequest;
+use App\Http\Requests\UpdatePizzaOrderRequest;
 use App\Http\Resources\V1\PizzaOrderCollection;
 use App\Http\Resources\V1\PizzaOrderResource;
 use App\Models\PizzaOrder;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -16,7 +18,8 @@ class ApiV1PizzaOrderController extends Controller
 {
     public function current(): PizzaOrderResource
     {
-        Log::info('hit orders/current');
+        Gate::authorize('viewAny', PizzaOrder::class);
+
         $currentOrder = PizzaOrder::currentOrder();
 
         return new PizzaOrderResource($currentOrder);
@@ -27,6 +30,8 @@ class ApiV1PizzaOrderController extends Controller
      */
     public function index(): PizzaOrderCollection
     {
+        Gate::authorize('viewAny', PizzaOrder::class);
+
         $orders = PizzaOrder::with('user')->latest()->paginate(10);
 
         return new PizzaOrderCollection($orders);
@@ -74,16 +79,26 @@ class ApiV1PizzaOrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StorePizzaOrderRequest $request, PizzaOrder $order)
+    public function update(UpdatePizzaOrderRequest $request, PizzaOrder $order): Response
     {
-        //
+//        Gate::authorize('update', $order);
+//
+//        $validated = $request->validated();
+//
+//        $order->update($validated);
+
+        return response(null, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PizzaOrder $order)
+    public function destroy(PizzaOrder $order): Response
     {
-        //
+        Gate::authorize('delete', $order);
+
+        $order->delete();
+
+        return response(null, 200);
     }
 }
