@@ -11,7 +11,7 @@ class StorePizzaOrderRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,6 @@ class StorePizzaOrderRequest extends FormRequest
         return [
             'message' => ['required', 'string', 'max:255'],
             'progress' => ['integer', 'between:0,100'],
-            'open' => ['missing'],
         ];
     }
 }

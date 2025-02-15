@@ -17,7 +17,7 @@ class PizzaOrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'open' => $this->faker->boolean(),
+            'open' => false,
             'message' => $this->faker->text(),
             'progress' => $this->faker->numberBetween(0, 100),
             'created_at' => $this->faker->dateTimeBetween('-3 months', 'now'),

@@ -53,6 +53,7 @@ class ApiV1PizzaOrderController extends Controller
         Gate::authorize('create', PizzaOrder::class);
 
         $validated = $request->validated();
+        $validated["open"] = true;
 
         $order = $request->user()->orders()->create($validated);
 
@@ -81,11 +82,17 @@ class ApiV1PizzaOrderController extends Controller
      */
     public function update(UpdatePizzaOrderRequest $request, PizzaOrder $order): Response
     {
-//        Gate::authorize('update', $order);
-//
-//        $validated = $request->validated();
-//
-//        $order->update($validated);
+        Gate::authorize('update', $order);
+
+        $validated = $request->validated();
+
+        if (!$order->open) {
+            return response(null, 400);
+        }
+
+        $validated["open"] = !($validated["progress"] == 100);
+
+        $order->update($validated);
 
         return response(null, 200);
     }
