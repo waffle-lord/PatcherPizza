@@ -9,5 +9,6 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function () {
+    Route::get('orders/current', [ApiV1PizzaOrderController::class, 'current']);
     Route::apiResource('orders', ApiV1PizzaOrderController::class);
 });

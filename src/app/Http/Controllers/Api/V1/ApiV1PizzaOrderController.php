@@ -9,17 +9,27 @@ use App\Http\Resources\V1\PizzaOrderResource;
 use App\Models\PizzaOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ApiV1PizzaOrderController extends Controller
 {
+    public function current(): PizzaOrderResource
+    {
+        Log::info('hit orders/current');
+        $currentOrder = PizzaOrder::currentOrder();
+
+        return new PizzaOrderResource($currentOrder);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index(): PizzaOrderCollection
     {
-        $chirps = PizzaOrder::with('user')->latest()->paginate(10);
+        $orders = PizzaOrder::with('user')->latest()->paginate(10);
 
-        return new PizzaOrderCollection($chirps);
+        return new PizzaOrderCollection($orders);
     }
 
     /**
