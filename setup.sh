@@ -1,5 +1,15 @@
 #!/bin/bash
 
+if [[ $1 == '' ]]; then
+    echo '=== OPTIONS ==='
+    echo '  --dev   	-> run the development server (for local developemnt only)'
+    echo '  --watch 	-> run npm watch to update tailwinds files during development'
+    echo '  --prod  	-> run the production server'
+    echo '  --prod-init	-> setup the production server (only run once for initial setup)'
+    exit
+fi
+
+source .env
 
 if [[ $1 == '--watch' ]]; then
     docker compose run --rm npm run watch
@@ -18,9 +28,10 @@ if [[ $1 == '--dev' ]]; then
   docker compose down -v
 fi
 
-if [[ $1 == '--prod' ]]; then
+if [[ $1 == '--prod-init' ]]; then
   if [ -f .prod-init ]; then
     echo 'You have already initialized production. You will need to delete .prod-init to continue. This is not advised'
+    echo 'You should probably run `./setup.sh --prod` instead
     echo '!!THIS WILL WIPE YOUR DB!!'
     echo 'Issue command directly if you do not want that to happen!'
     exit
@@ -60,7 +71,7 @@ docker compose run --rm npm run build
 if [[ $1 == '--dev' ]]; then
   echo ' -> migrate / seed db'
   docker compose exec php php /var/www/html/artisan migrate:fresh --seed
-elif [[ $1 == '--prod' ]]; then
+elif [[ $1 == '--prod-init' ]]; then
   echo ' -> fresh production db'
   docker compose exec php php /var/www/html/artisan migrate:fresh
 else
@@ -76,14 +87,16 @@ else
 fi
 
 
-if [[ $1 == '--prod' ]]; then
+if [[ $1 == '--prod' || $1 == '--prod-init' ]]; then
   echo ' -> updating file ownership'
   docker compose run --rm php chown -R :www-data /var/www/html
   docker compose run --rm php chmod -R 775 /var/www/html/storage
 
   echo ' -> optimizing'
   docker compose run --rm composer php artisan optimize
+fi
 
+if [[ $1 == '--prod-init' ]]; then
   echo ':: Account creation ::'
   read -p 'name: ' name 
   read -p 'email: ' email
@@ -96,7 +109,7 @@ fi
 
 echo ' -> setup done :)'
 echo ''
-echo 'Server      : http://localhost'
+echo 'Server      : $APP_URL'
 
 if [[ $1 == '--dev' ]]; then
   echo 'dev account : test@example.com | password'
