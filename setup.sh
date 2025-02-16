@@ -36,7 +36,7 @@ fi
 if [[ $1 == '--prod-init' ]]; then
   if [ -f .prod-init ]; then
     echo 'You have already initialized production. You will need to delete .prod-init to continue. This is not advised'
-    echo 'You should probably run `./setup.sh --prod` instead
+    echo 'You should probably run `./setup.sh --prod` instead'
     echo '!!THIS WILL WIPE YOUR DB!!'
     echo 'Issue command directly if you do not want that to happen!'
     exit
