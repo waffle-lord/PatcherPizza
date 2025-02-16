@@ -1,4 +1,5 @@
 @props(['order'])
+
 <div class="w-full text-center bg-[#e1e1e1] dark:bg-[#212f4d]">
     <h1>{{ $order->message }}</h1>
 
