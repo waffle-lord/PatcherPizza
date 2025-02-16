@@ -29,5 +29,10 @@ class DatabaseSeeder extends Seeder
             callback: function () use ($testAccount) {
             $testAccount->orders()->save(PizzaOrder::factory()->make());
         });
+
+        $openOrder = PizzaOrder::factory()->make();
+        $openOrder->open = true;
+
+        $testAccount->orders()->save($openOrder);
     }
 }
