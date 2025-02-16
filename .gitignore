@@ -2,3 +2,4 @@
 .prod-init
 src/psysh/psysh_history
 nginx/logs
+cf-cert.ini
