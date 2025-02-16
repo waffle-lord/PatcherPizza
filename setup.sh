@@ -49,7 +49,7 @@ echo ' -> running composer install'
 docker compose run --rm composer install
 
 echo ' -> generating key'
-docker compose run --rm composer php artisan key:generate
+docker compose run --rm composer php /var/www/html/artisan key:generate
 
 echo ' -> running npm install'
 docker compose run --rm npm i
@@ -70,15 +70,20 @@ fi
 
 if [ ! -h ./src/public/storage ]; then
   echo ' -> making storage link'
-  docker compose run --rm composer php artisan storage:link
+  docker compose run --rm composer php /var/www/html/artisan storage:link
 else
   echo ' -> storage link already exists'
 fi
 
-#echo ' -> updating file ownership'
-#docker compose run --rm php chown -h www-data:www-data /var/www/html/public/storage
 
 if [[ $1 == '--prod' ]]; then
+  echo ' -> updating file ownership'
+  docker compose run --rm php chown -R :www-data /var/www/html
+  docker compose run --rm php chmod -R 775 /var/www/html/storage
+
+  echo ' -> optimizing'
+  docker compose run --rm composer php artisan optimize
+
   echo ':: Account creation ::'
   read -p 'name: ' name 
   read -p 'email: ' email
