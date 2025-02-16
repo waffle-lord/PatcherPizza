@@ -9,6 +9,11 @@ if [[ $1 == '' ]]; then
     exit
 fi
 
+if [[ $1 != '--dev' || $1 != '--watch' || $1 != '--prod' || $1 != '--prod-init' ]]; then
+    echo 'invalid param, run ./setup.sh without any params for options'
+    exit
+fi
+
 source .env
 
 if [[ $1 == '--watch' ]]; then
@@ -109,7 +114,7 @@ fi
 
 echo ' -> setup done :)'
 echo ''
-echo 'Server      : $APP_URL'
+echo "Server      : $APP_URL"
 
 if [[ $1 == '--dev' ]]; then
   echo 'dev account : test@example.com | password'
