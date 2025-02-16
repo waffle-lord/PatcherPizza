@@ -9,7 +9,7 @@ if [[ $1 == '' ]]; then
     exit
 fi
 
-if [[ $1 != '--dev' || $1 != '--watch' || $1 != '--prod' || $1 != '--prod-init' ]]; then
+if [[ $1 != '--dev' && $1 != '--watch' && $1 != '--prod' && $1 != '--prod-init' ]]; then
     echo 'invalid param, run ./setup.sh without any params for options'
     exit
 fi
