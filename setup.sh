@@ -96,7 +96,8 @@ if [[ $1 == '--prod' || $1 == '--prod-init' ]]; then
   echo ' -> updating file ownership'
   docker compose run --rm php chown -R :www-data /var/www/html
   docker compose run --rm php chmod -R 775 /var/www/html/storage
-  docker compose run --rm php chmod 775 /var/www/html/database/database.sqlite
+  docker compose run --rm php chmod -R 770 /var/www/html/database
+  docker compose run --rm php chmod 660 /var/www/html/database/database.sqlite
 
   echo ' -> optimizing'
   docker compose run --rm composer php artisan optimize
