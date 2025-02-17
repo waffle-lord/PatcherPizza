@@ -11,7 +11,7 @@
                         <p>The kitchen is closed :)</p>
                     </div>
                 @else
-                    <x-pizza-progress :order="$order"/>
+                    <livewire:pizza-order-info :order="$order"/>
                 @endif
             </div>
         </div>
@@ -44,7 +44,7 @@
                         <p>The kitchen is closed :)</p>
                     </div>
                 @else
-                    <x-pizza-progress :order="$order"/>
+                    <livewire:pizza-order-info :order="$order"/>
                 @endif
             </div>
         </div>
