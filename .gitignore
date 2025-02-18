@@ -3,3 +3,4 @@
 src/psysh/psysh_history
 nginx/logs
 cf-cert.ini
+rn_last
