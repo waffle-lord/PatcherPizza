@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->boolean('open')->default(false);
             $table->text('message');
+            $table->unsignedInteger('order_number');
             $table->unsignedInteger('progress');
             $table->timestamps();
         });

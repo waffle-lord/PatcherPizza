@@ -8,7 +8,8 @@
             <div class="w-full flex p-20">
                 @if($order === null)
                     <div class="w-full text-center">
-                        <p>The kitchen is closed :)</p>
+                        <p>The kitchen is closed</p>
+                        <p class="text-sm/relaxed text-gray-700 dark:text-gray-400">This page refreshes automatically :)</p>
                     </div>
                 @else
                     <livewire:pizza-order-info :order="$order"/>
@@ -42,6 +43,7 @@
                 @if($order === null)
                     <div class="w-full text-center">
                         <p>The kitchen is closed :)</p>
+                        <p class="text-sm/relaxed text-gray-700 dark:text-gray-400">This page refreshes automatically</p>
                     </div>
                 @else
                     <livewire:pizza-order-info :order="$order"/>

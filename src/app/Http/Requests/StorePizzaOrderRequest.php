@@ -22,6 +22,7 @@ class StorePizzaOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'order_number' => ['required', 'integer'],
             'message' => ['required', 'string', 'max:255'],
             'progress' => ['integer', 'between:0,100'],
         ];

@@ -20,6 +20,7 @@ class PizzaOrderFactory extends Factory
             'open' => false,
             'message' => $this->faker->text(),
             'progress' => $this->faker->numberBetween(0, 100),
+            'order_number' => $this->faker->numberBetween(11111, 99999),
             'created_at' => $this->faker->dateTimeBetween('-3 months', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('-3 months', 'now'),
         ];

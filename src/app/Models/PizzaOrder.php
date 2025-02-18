@@ -11,7 +11,9 @@ class PizzaOrder extends Model
     /** @use HasFactory<\Database\Factories\PizzaOrderFactory> */
     use HasFactory;
 
-    protected $fillable = ['message', 'progress', 'open'];
+    protected $casts = ['open' => 'boolean'];
+    
+    protected $fillable = ['message', 'progress', 'open', 'order_number'];
 
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);

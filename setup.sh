@@ -46,6 +46,11 @@ if [[ $1 == '--prod-init' ]]; then
   touch .prod-init
 fi
 
+if [[ $1 == '--prod' || $1 == '--prod-init' ]]; then
+  echo '  -> using nginx production config'
+  mv ./nginx/prod.conf ./nginx/default.conf
+fi
+
 if [ ! -f ./src/database/database.sqlite ]; then
     touch ./src/database/database.sqlite
     echo ' -> sqlite db created'
