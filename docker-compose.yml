@@ -2,6 +2,7 @@ services:
     nginx:
         image: nginx:stable-alpine
         container_name: nginx
+        restart: unless-stopped
         networks:
             - pizza 
         ports:
@@ -21,6 +22,7 @@ services:
           dockerfile: php-dockerfile
         user: "${USER_ID}:${GROUP_ID}"
         container_name: php
+        restart: unless-stopped
         environment:
           - PHP_POOL_PATH=/var/www/html/config/php-fpm.conf
         volumes:
