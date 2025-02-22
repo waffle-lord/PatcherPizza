@@ -1,8 +1,9 @@
 @props(['label', 'position', 'current'])
 
+{{-- DESKTOP VERSION --}}
 <div class="grid justify-items-center relative hidden lg:flex md:flex">
     @if($position < $current)
-        <div class="rounded-full bg-green-500 h-12 w-12">
+        <div class="rounded-full bg-green-600 dark:bg-green-700 h-12 w-12">
         </div>
         <div class="absolute top-12 text-center w-full flex-wrap">{{ $label }}</div>
     @elseif($position === $current)
@@ -16,9 +17,10 @@
     @endif
 </div>
 
+{{-- MOBILE VERSION --}}
 <div class="relative md:hidden lg:hidden">
     @if($position < $current)
-        <div class="rounded-full bg-green-500 h-12 w-12">
+        <div class="rounded-full bg-green-600 dark:bg-green-700 h-12 w-12">
         </div>
         <div class="absolute top-3 left-14">{{ $label }}</div>
     @elseif($position === $current)

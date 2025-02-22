@@ -53,7 +53,7 @@ class ApiV1PizzaOrderController extends Controller
         Gate::authorize('create', PizzaOrder::class);
 
         $validated = $request->validated();
-        $validated["open"] = true;
+        $validated["status"] = 'open';
 
         $order = $request->user()->orders()->create($validated);
 
@@ -86,11 +86,15 @@ class ApiV1PizzaOrderController extends Controller
 
         $validated = $request->validated();
 
-        if (!$order->open) {
+        if ($order->status != 'open') {
             return response(null, 400);
         }
 
-        $validated["open"] = !($validated["progress"] == 100);
+        $stepCount = count(explode(',', $order->step_labels));
+
+        $validated["status"] = ($validated["step_progress"] == 100 && $validated["current_step"] == $stepCount - 1)
+            ? "completed"
+            : "open";
 
         $order->update($validated);
 

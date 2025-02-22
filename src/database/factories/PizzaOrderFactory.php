@@ -19,7 +19,7 @@ class PizzaOrderFactory extends Factory
         $labels = collect($this->faker->words(5));
 
         return [
-            'status' => $this->faker->randomElement(['open', 'completed', 'cancelled']),
+            'status' => $this->faker->randomElement(['completed', 'cancelled']),
             'message' => $this->faker->text(),
             'step_labels' => $labels->implode(','),
             'current_step' => $this->faker->numberBetween(0, count($labels) - 1),
@@ -30,10 +30,3 @@ class PizzaOrderFactory extends Factory
         ];
     }
 }
-
-/* TODO: update pizzaOrder model
- *     : - string of step labels 'one,two,three,etc...'
- *     : - current step progress to replace progress
- *     : - current step (used to determine how many steps (previous) are done and which step progress
- *     :   currently being tracked by the model. Future steps are considered incomplete.
- */

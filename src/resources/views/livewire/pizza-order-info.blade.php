@@ -1,8 +1,8 @@
-<div class="w-full text-center bg-[#e1e1e1] dark:bg-[#212f4d]">
+<div wire:poll.30s class="w-full text-center bg-[#e1e1e1] dark:bg-[#212f4d]">
     <h1 class="text-3xl text-blue-500 dark:text-indigo-500">Order #{{ $order->order_number }}</h1>
     <p class="text-sm/relaxed text-gray-700 dark:text-gray-400">This page refreshes automatically :)</p>
     <div class="grid grid-cols-9 justify-items-center p-20 hidden md:flex lg:flex">
-        @for($i = 0; $i < count($steps) - 1; $i++)
+        @for($i = 0; $i < count($steps); $i++)
             <x-step-label :label="$steps[$i]" :position="$i" :current="$order->current_step"/>
             @if($i < count($steps))
                 <div class="flex items-center w-full">
@@ -23,15 +23,15 @@
 
     </div>
     <div class="py-6 lg:hidden md:hidden">
-        @for($i = 0; $i < count($steps) - 1; $i++)
+        @for($i = 0; $i < count($steps); $i++)
             <div class="py-2 flex flex-row relative">
                 <x-step-label :label="$steps[$i]" :position="$i" :current="$order->current_step"/>
             @if($i < count($steps))
-                <div class="flex flex-row w-full text-end">
+                <div class="flex flex-row w-full">
                     @if($i < $order->current_step)
-                        <p class="absolute w-full text-center top-5">Done</p>
+                        <p class="absolute w-full text-green-600 dark:text-green-700 top-5 text-end px-20">Done</p>
                     @elseif($i == $order->current_step)
-                        <p class="absolute w-full text-center top-5 text-blue-500 dark:text-indigo-500 font-medium">{{ $order->step_progress }}%</p>
+                        <p class="absolute w-full top-5 text-end px-20 text-blue-500 dark:text-indigo-500 font-medium">{{ $order->step_progress }}%</p>
                     @endif
                 </div>
             @endif

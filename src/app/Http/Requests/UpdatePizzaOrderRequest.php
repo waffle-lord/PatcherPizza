@@ -23,8 +23,9 @@ class UpdatePizzaOrderRequest extends FormRequest
     {
         return [
             'message' => ['required', 'string', 'max:255'],
-            'progress' => ['required', 'integer', 'between:0,100'],
-            'open' => ['missing'],
+            'current_step' => ['required', 'integer'],
+            'step_progress' => ['required', 'integer', 'between:0,100'],
+            'status' => ['sometimes', 'required', 'string', 'max:255'],
         ];
     }
 }
