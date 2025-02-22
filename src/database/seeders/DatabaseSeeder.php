@@ -14,8 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         $testAccount = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
@@ -29,10 +27,5 @@ class DatabaseSeeder extends Seeder
             callback: function () use ($testAccount) {
             $testAccount->orders()->save(PizzaOrder::factory()->make());
         });
-
-        $openOrder = PizzaOrder::factory()->make();
-        $openOrder->open = true;
-
-        $testAccount->orders()->save($openOrder);
     }
 }

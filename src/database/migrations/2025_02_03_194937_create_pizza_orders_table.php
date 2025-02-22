@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('pizza_orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->boolean('open')->default(false);
+            $table->text('status');
             $table->text('message');
             $table->unsignedInteger('order_number');
-            $table->unsignedInteger('progress');
+            $table->string('step_labels');
+            $table->unsignedInteger('current_step');
+            $table->unsignedInteger('step_progress');
             $table->timestamps();
         });
     }

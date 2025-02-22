@@ -11,6 +11,7 @@ class PizzaOrderInfo extends Component
 
     public function render()
     {
-        return view('livewire.pizza-order-info');
+        $steps = explode(',', $this->order->step_labels);
+        return view('livewire.pizza-order-info', ['steps' => $steps]);
     }
 }

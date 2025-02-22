@@ -12,8 +12,8 @@ class PizzaOrder extends Model
     use HasFactory;
 
     protected $casts = ['open' => 'boolean'];
-    
-    protected $fillable = ['message', 'progress', 'open', 'order_number'];
+
+    protected $fillable = ['message', 'step_progress', 'open', 'order_number'];
 
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
@@ -21,6 +21,6 @@ class PizzaOrder extends Model
 
     public static function currentOrder(): PizzaOrder | null
     {
-        return PizzaOrder::orderBy('updated_at', 'desc')->where('open', true)->first();
+        return PizzaOrder::orderBy('updated_at', 'desc')->where('status', 'open')->first();
     }
 }

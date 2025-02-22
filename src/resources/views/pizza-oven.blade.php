@@ -1,7 +1,3 @@
-@push('meta')
-    <meta http-equiv="refresh" content="30">
-@endpush
-
 @auth
     <x-app-layout>
         <div class="flex h-screen justify-center items-center">
