@@ -8,7 +8,7 @@
                 <div class="flex items-center w-full">
                     <div class="w-full bg-gray-400 h-2.5 dark:bg-[#111827]">
                         @if($i < $order->current_step)
-                            <div class="bg-blue-500 dark:bg-indigo-500 h-2.5" style="width: 100%"></div>
+                            <div class="bg-green-600 dark:bg-green-700 h-2.5" style="width: 100%"></div>
                         @elseif($i == $order->current_step)
                             <div class="bg-blue-500 dark:bg-indigo-500 h-2.5 rounded-r-md" style="width: {{ $order->step_progress }}%"></div>
                         @else

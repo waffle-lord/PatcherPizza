@@ -21,4 +21,9 @@ class PizzaOrder extends Model
     {
         return PizzaOrder::orderBy('updated_at', 'desc')->where('status', 'open')->first();
     }
+
+    public static function lastCompletedOrder(): PizzaOrder | null
+    {
+        return PizzaOrder::orderBy('updated_at', 'desc')->where('status', 'completed')->first();
+    }
 }
