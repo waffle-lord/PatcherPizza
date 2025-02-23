@@ -86,7 +86,7 @@ class ApiV1PizzaOrderController extends Controller
 
         $validated = $request->validated();
 
-        if ($order->status != 'open') {
+        if ($order->status !== 'open') {
             return response(null, 400);
         }
 
@@ -97,6 +97,20 @@ class ApiV1PizzaOrderController extends Controller
             : "open";
 
         $order->update($validated);
+
+        return response(null, 200);
+    }
+
+    public function cancel(PizzaOrder $order): Response
+    {
+        Gate::authorize('update', $order);
+
+        if ($order->status !== 'open') {
+            return response(null, 400);
+        }
+
+        $order->status = "cancelled";
+        $order->save();
 
         return response(null, 200);
     }
