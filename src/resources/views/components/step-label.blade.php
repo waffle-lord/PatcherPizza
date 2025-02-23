@@ -33,7 +33,7 @@
         </div>
         <div class="absolute top-3 left-14">{{ $label }}</div>
     @else
-        <div class="rounded-full bg-black h-12 w-12">
+        <div class="rounded-full bg-gray-400 dark:bg-[#111827] h-12 w-12">
             <x-step-icon :label="$label" />
         </div>
         <div class="absolute top-3 left-14">{{ $label }}</div>
