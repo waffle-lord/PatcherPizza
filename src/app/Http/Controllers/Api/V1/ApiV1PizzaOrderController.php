@@ -92,7 +92,7 @@ class ApiV1PizzaOrderController extends Controller
 
         $stepCount = count(explode(',', $order->step_labels));
 
-        $validated["status"] = ($validated["step_progress"] == 100 && $validated["current_step"] == $stepCount - 1)
+        $validated["status"] = ($validated["step_progress"] == 100 && $validated["current_step"] >= $stepCount - 1)
             ? "completed"
             : "open";
 
