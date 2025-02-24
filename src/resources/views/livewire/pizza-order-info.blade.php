@@ -39,7 +39,10 @@
                         @if($order->step_progress > -1)
                             <p class="absolute w-full top-5 text-end px-20 text-blue-500 dark:text-indigo-500 font-medium">{{ $order->step_progress }}%</p>
                         @else
-                            <p class="absolute w-full top-5 text-end px-20 text-blue-500 dark:text-indigo-500 font-medium">Running ...</p>
+                            <div class="flex flex-row justify-end items-center w-full gap-2">
+                                <x-spinner />
+                                <p class="top-5 text-blue-500 dark:text-indigo-500 font-medium">Running ...</p>
+                            </div>
                         @endif
                     @endif
                 </div>
