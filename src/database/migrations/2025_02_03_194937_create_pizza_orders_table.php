@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('order_number');
             $table->string('step_labels');
             $table->unsignedInteger('current_step');
-            $table->unsignedInteger('step_progress');
+            $table->integer('step_progress');
             $table->timestamps();
         });
     }

@@ -26,7 +26,7 @@ class StorePizzaOrderRequest extends FormRequest
             'message' => ['required', 'string', 'max:255'],
             'step_labels' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z, ]+$/'],
             'current_step' => ['required', 'integer'],
-            'step_progress' => ['integer', 'between:0,100']
+            'step_progress' => ['integer', 'between:-1,100']
         ];
     }
 }
