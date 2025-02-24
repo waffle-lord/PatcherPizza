@@ -36,7 +36,11 @@
                     @if($i < $order->current_step)
                         <p class="absolute w-full text-green-600 dark:text-green-700 top-5 text-end px-20">Done</p>
                     @elseif($i == $order->current_step)
-                        <p class="absolute w-full top-5 text-end px-20 text-blue-500 dark:text-indigo-500 font-medium">{{ $order->step_progress }}%</p>
+                        @if($order->step_progress > -1)
+                            <p class="absolute w-full top-5 text-end px-20 text-blue-500 dark:text-indigo-500 font-medium">{{ $order->step_progress }}%</p>
+                        @else
+                            <p class="absolute w-full top-5 text-end px-20 text-blue-500 dark:text-indigo-500 font-medium">Running ...</p>
+                        @endif
                     @endif
                 </div>
             @endif
