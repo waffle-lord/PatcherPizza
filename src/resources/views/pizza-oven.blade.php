@@ -1,20 +1,7 @@
-@push('meta')
-    <meta http-equiv="refresh" content="30">
-@endpush
-
 @auth
     <x-app-layout>
         <div class="flex h-screen justify-center items-center">
-            <div class="w-full flex p-20">
-                @if($order === null)
-                    <div class="w-full text-center">
-                        <p>The kitchen is closed</p>
-                        <p class="text-sm/relaxed text-gray-700 dark:text-gray-400">This page refreshes automatically :)</p>
-                    </div>
-                @else
-                    <livewire:pizza-order-info :order="$order"/>
-                @endif
-            </div>
+            <livewire:pizza-oven-info :order="$order" :lastOrder="$lastOrder" />
         </div>
     </x-app-layout>
 @else
@@ -22,9 +9,9 @@
         <div class="flex-row relative px-6 py-2 text-black dark:text-white bg-white dark:bg-[#111827]">
             <h2 class="flex-1 text-center">Patcher Pizza</h2>
             <div class="absolute flex flex-row top-2 right-5">
-                <x-dark-mode-toggle />
+                <x-dark-mode-toggle/>
                 @if (Route::has('login'))
-                    <nav >
+                    <nav>
                         @guest
                             <a
                                 href="{{ route('login') }}"
@@ -39,16 +26,9 @@
 
         </div>
         <div class="flex h-screen justify-center items-center text-black dark:text-white bg-[#e1e1e1] dark:bg-[#212f4d]">
-            <div class="w-full flex p-20">
-                @if($order === null)
-                    <div class="w-full text-center">
-                        <p>The kitchen is closed :)</p>
-                        <p class="text-sm/relaxed text-gray-700 dark:text-gray-400">This page refreshes automatically</p>
-                    </div>
-                @else
-                    <livewire:pizza-order-info :order="$order"/>
-                @endif
-            </div>
+            <livewire:pizza-oven-info :order="$order" :lastOrder="$lastOrder" />
         </div>
     </x-guest-layout>
-@endauth
+    @endauth
+    </div>
+

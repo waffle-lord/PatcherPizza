@@ -15,7 +15,7 @@ class PizzaOrderController extends Controller
     public function index(): View
     {
         $order = PizzaOrder::currentOrder();
-        return view('pizza-oven', ['order' => $order]);
+        return view('pizza-oven', ['order' => $order, 'lastOrder' => PizzaOrder::lastCompletedOrder()]);
     }
 
     /**

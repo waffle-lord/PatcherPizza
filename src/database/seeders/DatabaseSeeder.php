@@ -14,8 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         $testAccount = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
@@ -31,7 +29,7 @@ class DatabaseSeeder extends Seeder
         });
 
         $openOrder = PizzaOrder::factory()->make();
-        $openOrder->open = true;
+        $openOrder->status = 'open';
 
         $testAccount->orders()->save($openOrder);
     }
