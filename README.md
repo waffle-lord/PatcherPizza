@@ -18,6 +18,11 @@ A dumb thing that is sure to be a mistake ...
 - `setup.sh --prod-init` :: initial setup for production
 - `setup.sh --prod` :: start existing production server
 
+To update production:
+- drop any git changes to local files (it will only be permissions / configs that are created when the server starts)
+- pull the main branch
+- run `./setup.sh --prod`
+
 # Adding Additional Users
 Registration is off on this server.
 
