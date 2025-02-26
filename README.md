@@ -6,7 +6,7 @@ A dumb thing that is sure to be a mistake ...
 
 1. Copy the `.env.example` file to `.env`
 2. update the `USER_ID` and `GROUP_ID` variables with the user to use
-3. run `setup.sh` with options (see options below)
+4. run `setup.sh` with options (see options below)
 
 # Setup.sh Options
 
@@ -15,8 +15,8 @@ A dumb thing that is sure to be a mistake ...
 - `setup.sh --watch` :: runs `npm run watch` to update tailwinds css
 
 ## For Production
-- `setup.sh --prod` :: initial setup for production
-- `setup.sh` :: update prodcution
+- `setup.sh --prod-init` :: initial setup for production
+- `setup.sh --prod` :: start existing production server
 
 # Adding Additional Users
 Registration is off on this server.
