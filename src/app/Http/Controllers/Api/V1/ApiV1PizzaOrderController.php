@@ -25,6 +25,15 @@ class ApiV1PizzaOrderController extends Controller
         return new PizzaOrderResource($currentOrder);
     }
 
+    public function lastCompleted(): PizzaOrderResource
+    {
+        Gate::authorize('viewAny', PizzaOrder::class);
+
+        $lastOrder = PizzaOrder::lastCompletedOrder();
+
+        return new PizzaOrderResource($lastOrder);
+    }
+
     /**
      * Display a listing of the resource.
      */

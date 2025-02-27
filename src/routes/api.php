@@ -10,6 +10,7 @@ Route::get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function () {
     Route::get('orders/current', [ApiV1PizzaOrderController::class, 'current']);
+    Route::get('orders/lastCompleted', [ApiV1PizzaOrderController::class, 'lastCompleted']);
     Route::put('orders/cancel/{order}', [ApiV1PizzaOrderController::class, 'cancel']);
     Route::apiResource('orders', ApiV1PizzaOrderController::class);
 });
